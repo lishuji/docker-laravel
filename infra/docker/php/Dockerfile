@@ -32,7 +32,7 @@ RUN apt-get update \
     zip \
     bcmath \
   && composer config -g process-timeout 3600 \
-  && composer config -g repos.packagist composer https://packagist.org
+  && composer config -g repos.packagist composer https://mirrors.aliyun.com/composer/
 
 FROM base AS development
 

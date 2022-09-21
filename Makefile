@@ -5,7 +5,7 @@ build:
 laravel-install:
 	docker compose exec app composer create-project --prefer-dist laravel/laravel .
 create-project:
-	mkdir -p src
+	mkdir -p ./src
 	@make build
 	@make up
 	@make laravel-install
@@ -50,20 +50,20 @@ logs:
 	docker compose logs
 logs-watch:
 	docker compose logs --follow
-log-web:
-	docker compose logs web
-log-web-watch:
-	docker compose logs --follow web
+log-nginx:
+	docker compose logs nginx
+log-nginx-watch:
+	docker compose logs --follow nginx
 log-app:
 	docker compose logs app
 log-app-watch:
 	docker compose logs --follow app
-log-db:
-	docker compose logs db
-log-db-watch:
-	docker compose logs --follow db
-web:
-	docker compose exec web bash
+log-mysql:
+	docker compose logs mysql
+log-mysql-watch:
+	docker compose logs --follow mysql
+nginx:
+	docker compose exec nginx bash
 app:
 	docker compose exec app bash
 migrate:
@@ -94,10 +94,10 @@ cache-clear:
 	docker compose exec app composer clear-cache
 	@make optimize-clear
 	docker compose exec app php artisan event:clear
-db:
-	docker compose exec db bash
+mysql:
+	docker compose exec mysql bash
 sql:
-	docker compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
+	docker compose exec mysql bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
 redis:
 	docker compose exec redis redis-cli
 ide-helper:
